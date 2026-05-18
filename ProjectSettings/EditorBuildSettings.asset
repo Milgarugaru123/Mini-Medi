@@ -6,7 +6,34 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Init_Page.unity
+    path: Assets/Scenes/Main_Page.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Stories/CPR_Story.unity
+    guid: b8f5cc8878733b74bad77832db177411
+  - enabled: 1
+    path: Assets/Scenes/Minigames/CPR_Minigame.unity
+    guid: 12ef6eb37b87aa0499659af95ffd078e
+  - enabled: 1
+    path: Assets/Scenes/Results/CPR_Result.unity
+    guid: e8512dc997e00ce4d8997d94869af1d7
+  - enabled: 1
+    path: Assets/Scenes/Stories/Hives_Story.unity
+    guid: 74f9d07597b261442937fd652b56714f
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Hives_Minigame.unity
+    guid: 89f09c9b328ce8841a2b3e31e88b02e2
+  - enabled: 1
+    path: Assets/Scenes/Results/Hives_Result.unity
+    guid: f7d0f13ec8ac0bc4da35de4213244ccf
+  - enabled: 1
+    path: Assets/Scenes/Stories/FAST_Story.unity
+    guid: bfb3575a1bc5f5b468791d45051e7830
+  - enabled: 1
+    path: Assets/Scenes/Minigames/FAST_Minigame.unity
+    guid: cde12b54b02bbbe43bd382ecf262518c
+  - enabled: 1
+    path: Assets/Scenes/Results/FAST_Result.unity
+    guid: f3937d45ecf242c40b3427f2f477bd61
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

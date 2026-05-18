@@ -1,11 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Current_Page_Follow : MonoBehaviour
 {
     public Transform target;
     private Transform cam_tr;
-    private float cam_z = -10f;
     [SerializeField] float smoothing = 0.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
