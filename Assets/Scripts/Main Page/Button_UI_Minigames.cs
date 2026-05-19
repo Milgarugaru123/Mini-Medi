@@ -8,6 +8,7 @@ public class Button_UI_Minigames : MonoBehaviour
 
     private GameObject Minigame_Button;
     public string Next_Scene;
+    private bool isHovering = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,12 +17,13 @@ public class Button_UI_Minigames : MonoBehaviour
 
     void OnMouseEnter()
     {
-        Debug.Log("Mouse Hovering over Sprite");
+        isHovering = true;
+
     }
 
     void OnMouseExit()
     {
-        Debug.Log("Mouse Left Sprite");
+        isHovering = false;
     }
 
     private void OnMouseDown()
@@ -31,7 +33,10 @@ public class Button_UI_Minigames : MonoBehaviour
 
     private void OnMouseUp()
     {
-        SceneManager.LoadScene(Next_Scene);
+        if (isHovering)
+        {
+            SceneManager.LoadScene(Next_Scene);
+        }
     }
 
     // Update is called once per frame
