@@ -1,38 +1,79 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using System.Collections;
-using Unity.VisualScripting;
-using System.Runtime.CompilerServices;
+using static UnityEngine.GraphicsBuffer;
 
 public class Button_UI_Long : MonoBehaviour
 {
     public string button_name;
     public GameObject target;
     private bool isHovering = false;
+    private bool isPressed = false;
+    private GameObject button_left;
+    private GameObject button_mid;
+    private GameObject button_right;
+    private SpriteRenderer button_left_renderer;
+    private SpriteRenderer button_mid_renderer;
+    private SpriteRenderer button_right_renderer;
+    private Sprite button_left_off;
+    private Sprite button_mid_off;
+    private Sprite button_right_off;
+    public Sprite button_left_pressed;
+    public Sprite button_mid_pressed;
+    public Sprite button_right_pressed;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        button_left = transform.GetChild(0).gameObject;
+        button_mid = transform.GetChild(1).gameObject;
+        button_right = transform.GetChild(2).gameObject;
+        button_left_renderer = button_left.GetComponent<SpriteRenderer>();
+        button_mid_renderer = button_mid.GetComponent<SpriteRenderer>();
+        button_right_renderer = button_right.GetComponent<SpriteRenderer>();
+        button_left_off = button_left_renderer.sprite;
+        button_mid_off = button_mid_renderer.sprite;
+        button_right_off = button_right_renderer.sprite;
     }
 
     void OnMouseEnter()
     {
         isHovering = true;
-
+        if(isPressed)
+        {
+            button_left_renderer.sprite = button_left_pressed;
+            button_mid_renderer.sprite = button_mid_pressed;
+            button_right_renderer.sprite = button_right_pressed;
+        }
     }
 
     void OnMouseExit()
     {
         isHovering = false;
+        if (isPressed)
+        {
+            button_left_renderer.sprite = button_left_off;
+            button_mid_renderer.sprite = button_mid_off;
+            button_right_renderer.sprite = button_right_off;
+        }
     }
 
     private void OnMouseDown()
     {
-        Debug.Log("Mouse Clicked on Sprite");
+        isPressed = true;
+        button_left_renderer.sprite = button_left_pressed;
+        button_mid_renderer.sprite = button_mid_pressed;
+        button_right_renderer.sprite = button_right_pressed;
     }
 
     private void OnMouseUp()
     {
+        isPressed = false;
+        button_left_renderer.sprite = button_left_off;
+        button_mid_renderer.sprite = button_mid_off;
+        button_right_renderer.sprite = button_right_off;
         if (isHovering)
         {
             if (button_name == "Game Start")
@@ -62,6 +103,37 @@ public class Button_UI_Long : MonoBehaviour
             if (button_name == "Back from Credit")
             {
                 target.transform.position = (Vector3.right * 40) + (Vector3.forward * 10);
+            }
+            if (button_name == "Exit Game Yes")
+            {
+#if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+#else
+                    Application.Quit();
+#endif
+                target.SetActive(false);
+            }
+            if (button_name == "Exit Game No")
+            {
+                float target_z = target.transform.position.z;
+                target.transform.position = (Vector3.right * 40) + (Vector3.forward * target_z);
+                target.SetActive(false);
+            }
+            if (button_name == "Skip Story Yes")
+            {
+                target.SetActive(false);
+                float target_x = target.transform.position.x;
+                float target_z = target.transform.position.z;
+                target.transform.position = new Vector3(target_x, -20, target_z);
+                GameObject.Find("Story Controller").SendMessage("SkipStory", SendMessageOptions.DontRequireReceiver);
+            }
+            if (button_name == "Skip Story No")
+            {
+                target.SetActive(false);
+                float target_x = target.transform.position.x;
+                float target_z = target.transform.position.z;
+                target.transform.position = new Vector3(target_x, -20, target_z);
+                GameObject.Find("Story Controller").SendMessage("ContinueStory", SendMessageOptions.DontRequireReceiver);
             }
         }
     }
