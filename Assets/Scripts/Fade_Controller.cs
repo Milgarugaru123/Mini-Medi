@@ -7,6 +7,7 @@ public class Fade_Controller : MonoBehaviour // Panel 불투명도 조절해 페이드인 o
     public bool isFadeIn; // true=FadeIn, false=FadeOut
     public GameObject panel; // 불투명도를 조절할 Panel 오브젝트
     private Action onCompleteCallback; // FadeIn 또는 FadeOut 다음에 진행할 함수
+    private float fade_time = 1.0f; // 페이드 효과가 완료되는 데 걸리는 시간
 
     void Start()
     {
@@ -35,16 +36,14 @@ public class Fade_Controller : MonoBehaviour // Panel 불투명도 조절해 페이드인 o
         Debug.Log("FadeCanvasController_ Fade Out 끝");
     }
 
-    IEnumerator CoFadeIn()
+    private IEnumerator CoFadeIn()
     {
         float elapsedTime = 0f; // 누적 경과 시간
-        float fadedTime = 0.5f; // 총 소요 시간
 
-        while (elapsedTime <= fadedTime)
+        while (elapsedTime <= fade_time)
         {
-            panel.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(1f, 0f, elapsedTime / fadedTime));
-
-            elapsedTime += Time.deltaTime;
+            panel.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(1f, 0f, elapsedTime / fade_time));
+            elapsedTime += Time.deltaTime / 2;
             Debug.Log("Fade In 중...");
             yield return null;
         }
@@ -54,14 +53,13 @@ public class Fade_Controller : MonoBehaviour // Panel 불투명도 조절해 페이드인 o
         yield break;
     }
 
-    IEnumerator CoFadeOut()
+    private IEnumerator CoFadeOut()
     {
         float elapsedTime = 0f; // 누적 경과 시간
-        float fadedTime = 0.5f; // 총 소요 시간
 
-        while (elapsedTime <= fadedTime)
+        while (elapsedTime <= fade_time)
         {
-            panel.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(0f, 1f, elapsedTime / fadedTime));
+            panel.GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(0f, 1f, elapsedTime / fade_time));
 
             elapsedTime += Time.deltaTime;
             Debug.Log("Fade Out 중...");

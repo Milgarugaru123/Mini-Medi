@@ -1,14 +1,14 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
-public class Button_UI_Long : MonoBehaviour
+public class Button_UI_Menu : MonoBehaviour
 {
     public string button_name;
     public GameObject target;
+    private GameObject menu_bg;
     private bool isHovering = false;
     private bool isPressed = false;
     private GameObject button_left;
@@ -27,6 +27,7 @@ public class Button_UI_Long : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        menu_bg = GameObject.Find("Menu Background");
         button_left = transform.GetChild(0).gameObject;
         button_mid = transform.GetChild(1).gameObject;
         button_right = transform.GetChild(2).gameObject;
@@ -41,7 +42,7 @@ public class Button_UI_Long : MonoBehaviour
     void OnMouseEnter()
     {
         isHovering = true;
-        if(isPressed)
+        if (isPressed)
         {
             button_left_renderer.sprite = button_left_pressed;
             button_mid_renderer.sprite = button_mid_pressed;
@@ -67,7 +68,6 @@ public class Button_UI_Long : MonoBehaviour
         button_mid_renderer.sprite = button_mid_pressed;
         button_right_renderer.sprite = button_right_pressed;
     }
-
     private void OnMouseUp()
     {
         isPressed = false;
@@ -76,64 +76,22 @@ public class Button_UI_Long : MonoBehaviour
         button_right_renderer.sprite = button_right_off;
         if (isHovering)
         {
-            if (button_name == "Game Start")
+            if (button_name == "Resume")
             {
-                target.transform.position = (Vector3.down * 100);
-            }
-            if (button_name == "Ranking")
-            {
-                Debug.Log("TBD");
+                menu_bg.transform.position = (Vector3.up * 20) + (Vector3.forward * 20);
+                target.SendMessage("MenuDown", SendMessageOptions.DontRequireReceiver);
+                menu_bg.SetActive(false);
             }
             if (button_name == "Option")
             {
-                target.transform.position = (Vector3.left * 0) + (Vector3.forward * 10);
+                menu_bg.transform.position = (Vector3.up * 20) + (Vector3.forward * 20);
+                target.transform.position = (Vector3.forward * 10);
+                menu_bg.SetActive(false);
             }
-            if (button_name == "Credits")
+            if (button_name == "To Title")
             {
-                target.transform.position = (Vector3.left * 0) + (Vector3.forward * 10);
-            }
-            if (button_name == "Back to Main")
-            {
-                target.transform.position = (Vector3.up * 0);
-            }
-            if (button_name == "Back from Option")
-            {
-                target.transform.position = (Vector3.right * 40) + (Vector3.forward * 10);
-            }
-            if (button_name == "Back from Credit")
-            {
-                target.transform.position = (Vector3.right * 40) + (Vector3.forward * 10);
-            }
-            if (button_name == "Exit Game Yes")
-            {
-#if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-#else
-                    Application.Quit();
-#endif
-                target.SetActive(false);
-            }
-            if (button_name == "Exit Game No")
-            {
-                float target_z = target.transform.position.z;
-                target.transform.position = (Vector3.right * 40) + (Vector3.forward * target_z);
-                target.SetActive(false);
-            }
-            if (button_name == "Skip Story Yes")
-            {
-                target.SetActive(false);
-                float target_x = target.transform.position.x;
-                float target_z = target.transform.position.z;
-                target.transform.position = new Vector3(target_x, -20, target_z);
-                GameObject.Find("Story Controller").SendMessage("SkipStory", SendMessageOptions.DontRequireReceiver);
-            }
-            if (button_name == "Skip Story No")
-            {
-                target.SetActive(false);
-                float target_x = target.transform.position.x;
-                float target_z = target.transform.position.z;
-                target.transform.position = new Vector3(target_x, -20, target_z);
-                GameObject.Find("Story Controller").SendMessage("ContinueStory", SendMessageOptions.DontRequireReceiver);
+                target.transform.position = (Vector3.forward * -5);
+                target.SetActive(true);
             }
         }
     }
