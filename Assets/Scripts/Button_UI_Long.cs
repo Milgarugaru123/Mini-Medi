@@ -110,6 +110,10 @@ public class Button_UI_Long : MonoBehaviour
             if (button_name == "Back from Option")
             {
                 target.transform.position = (Vector3.right * 40) + (Vector3.forward * 10);
+            }
+            if (button_name == "Back to Menu")
+            {
+                target.transform.position = (Vector3.right * 40) + (Vector3.forward * 10);
                 GameObject.Find("Menu Button").SendMessage("BackToMenu", SendMessageOptions.DontRequireReceiver);
             }
             if (button_name == "Back from Credit")
@@ -132,20 +136,20 @@ public class Button_UI_Long : MonoBehaviour
             }
             if (button_name == "Skip Story Yes")
             {
-                target.SetActive(false);
                 float target_x = target.transform.position.x;
                 float target_z = target.transform.position.z;
                 target.transform.position = new Vector3(target_x, -20, target_z);
                 GameObject.Find("Story Controller").SendMessage("SkipStory", SendMessageOptions.DontRequireReceiver);
+                target.SetActive(false);
             }
             if (button_name == "Skip Story No")
             {
-                target.SetActive(false);
                 float target_x = target.transform.position.x;
                 float target_z = target.transform.position.z;
                 target.transform.position = new Vector3(target_x, -20, target_z);
                 GameObject.Find("Story Controller").SendMessage("ContinueTimer", SendMessageOptions.DontRequireReceiver);
                 GameObject.Find("Skip Button").SendMessage("ContinueBlink", SendMessageOptions.DontRequireReceiver);
+                target.SetActive(false);
             }
             if (button_name == "Exit Minigame Yes")
             {
@@ -156,6 +160,26 @@ public class Button_UI_Long : MonoBehaviour
                 float target_z = target.transform.position.z;
                 target.transform.position = (Vector3.right * 40) + (Vector3.forward * target_z);
                 target.SetActive(false);
+            }
+            if (button_name == "Skip Tutorial Yes")
+            {
+                float target_x = target.transform.position.x;
+                float target_z = target.transform.position.z;
+                target.transform.position = new Vector3(target_x, -20, target_z);
+                GameObject.Find("Minigame Controller").SendMessage("TutorialEnd", SendMessageOptions.DontRequireReceiver);
+                target.SetActive(false);
+            }
+            if (button_name == "Skip Tutorial No")
+            {
+                float target_x = target.transform.position.x;
+                float target_z = target.transform.position.z;
+                target.transform.position = new Vector3(target_x, -20, target_z);
+                GameObject.Find("Skip Tutorial Button").SendMessage("ContinueBlink", SendMessageOptions.DontRequireReceiver);
+                target.SetActive(false);
+            }
+            if (button_name == "Back to Title")
+            {
+                StartCoroutine("ToTitle");
             }
         }
     }

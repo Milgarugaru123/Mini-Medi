@@ -6,21 +6,21 @@ using System.Threading;
 public class Menu_Button : MonoBehaviour
 {
     public GameObject target;
-    private SpriteRenderer target_renderer;
+    private SpriteRenderer this_renderer;
     private Sprite next_sprite = null;
     private Sprite sprite_on;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        target_renderer = gameObject.GetComponent<SpriteRenderer>();
-        sprite_on = target_renderer.sprite;
+        this_renderer = gameObject.GetComponent<SpriteRenderer>();
+        sprite_on = this_renderer.sprite;
         target.SetActive(false);
     }
 
     public void MenuDown()
     {
-        target_renderer.sprite = sprite_on;
+        this_renderer.sprite = sprite_on;
     }
 
     public void BackToMenu()
@@ -31,9 +31,11 @@ public class Menu_Button : MonoBehaviour
 
     private void OnMouseDown()
     {
-        target_renderer.sprite = next_sprite;
+        this_renderer.sprite = next_sprite;
         target.transform.position = (Vector3.forward * 20);
         target.SetActive(true);
+        GameObject.Find("Minigame Controller").gameObject.SendMessage("SkipButtonHide", SendMessageOptions.DontRequireReceiver);
+        GameObject.Find("Minigame Controller").gameObject.SendMessage("MinigamePause", SendMessageOptions.DontRequireReceiver);
     }
 
     // Update is called once per frame

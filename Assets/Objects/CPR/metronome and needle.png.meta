@@ -105,10 +105,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 812
+        width: 608
         height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -121,11 +121,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: metronome and needle_1
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 0
+        width: 86
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.5, y: 0.119}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e299e32958a40842865222f56005c8e
+      internalID: -262370845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c430d0ca0f25a1e4abe43ca478f25ee1
     internalID: 0
     vertices: []
     indices: 
@@ -136,6 +158,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       metronome and needle_0: 621013976889417698
+      metronome and needle_1: -262370845
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

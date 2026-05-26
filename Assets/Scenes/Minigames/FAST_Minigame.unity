@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f199ee596ecd17049b26bdfeda690ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Follow_Camera
-  target_cam: {fileID: 0}
+  target_cam: {fileID: 638014231}
   self_z: -20
 --- !u!82 &541698222
 AudioSource:

@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 65273952}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.3, y: 0.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -950,7 +950,7 @@ Transform:
   m_GameObject: {fileID: 211940983}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.065, y: -0.08, z: -1}
+  m_LocalPosition: {x: 0.065, y: -0.08, z: -2}
   m_LocalScale: {x: 0.03816879, y: 0.06552371, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1206,7 +1206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &236007039
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2427,8 +2427,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Y e s !
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b45be22762c62f34192ab94a0226cba6, type: 2}
-  m_sharedMaterial: {fileID: -3078575227162079457, guid: b45be22762c62f34192ab94a0226cba6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe3bfa4e171c4d1488fd3693bcb61916, type: 2}
+  m_sharedMaterial: {fileID: 9207485946370340253, guid: fe3bfa4e171c4d1488fd3693bcb61916, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3853,7 +3853,7 @@ Transform:
   m_GameObject: {fileID: 686986787}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.065, y: -0.08, z: -1}
+  m_LocalPosition: {x: -0.065, y: -0.08, z: -2}
   m_LocalScale: {x: 0.03816879, y: 0.06552371, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4704,8 +4704,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC190\uB2D8 (42\uC138)\n\uC77C\uBC18\uC778"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
-  m_sharedMaterial: {fileID: 2655600427771761948, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
+  m_sharedMaterial: {fileID: 151587458363875844, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7711,8 +7711,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC751\uAE09 \uAD6C\uC870\uC0AC\n(34\uC138)"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
-  m_sharedMaterial: {fileID: 2655600427771761948, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
+  m_sharedMaterial: {fileID: 151587458363875844, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8114,8 +8114,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD3B8\uD76C\uC900 (24\uC138)\nGS25 \uC57C\uAC04 \uC54C\uBC14"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
-  m_sharedMaterial: {fileID: 2655600427771761948, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
+  m_sharedMaterial: {fileID: 151587458363875844, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8382,8 +8382,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: N o !
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b45be22762c62f34192ab94a0226cba6, type: 2}
-  m_sharedMaterial: {fileID: -3078575227162079457, guid: b45be22762c62f34192ab94a0226cba6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fe3bfa4e171c4d1488fd3693bcb61916, type: 2}
+  m_sharedMaterial: {fileID: 9207485946370340253, guid: fe3bfa4e171c4d1488fd3693bcb61916, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9075,8 +9075,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2014193537}
   - component: {fileID: 2014193536}
+  - component: {fileID: 2014193538}
+  - component: {fileID: 2014193539}
   m_Layer: 0
-  m_Name: Sound_Controller
+  m_Name: Sound Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9111,6 +9113,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014193538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014193535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34d12d5da8916a4f8f1b1c4036e9218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Data_Controller
+--- !u!114 &2014193539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014193535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c582b21377a5fc3408cbe5d561913443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Screen_Resolution_Controller
 --- !u!1 &2038273371
 GameObject:
   m_ObjectHideFlags: 0
@@ -9170,8 +9196,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC751\uAE09 \uAD6C\uC870\uC0AC\n(34\uC138)"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
-  m_sharedMaterial: {fileID: 2655600427771761948, guid: bdd140bea554ba1498590d77fd55ac9e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
+  m_sharedMaterial: {fileID: 151587458363875844, guid: 522fe5e6a82036543b45ee1766070846, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9274,7 +9300,7 @@ Transform:
   m_GameObject: {fileID: 2084687548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.30499995, y: 0.40900028, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

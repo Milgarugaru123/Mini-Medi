@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f199ee596ecd17049b26bdfeda690ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Follow_Camera
-  target_cam: {fileID: 0}
+  target_cam: {fileID: 142617721}
   self_z: 100
 --- !u!212 &1183643413
 SpriteRenderer:
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f199ee596ecd17049b26bdfeda690ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Follow_Camera
-  target_cam: {fileID: 0}
+  target_cam: {fileID: 142617721}
   self_z: -20
 --- !u!82 &1790074656
 AudioSource:
@@ -445,7 +445,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 7aeb695588432e4498e1935b9ae6448d, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: d553a2f911240aa45afacba1d8fc578e, type: 3}
+  m_Resource: {fileID: 8300000, guid: 5ea6bee2d59a89345bccb36c9f135471, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

@@ -80,6 +80,8 @@ public class Button_UI_Menu : MonoBehaviour
             {
                 menu_bg.transform.position = (Vector3.up * 20) + (Vector3.forward * 20);
                 target.SendMessage("MenuDown", SendMessageOptions.DontRequireReceiver);
+                GameObject.Find("Minigame Controller").gameObject.SendMessage("SkipButtonShow", SendMessageOptions.DontRequireReceiver);
+                GameObject.Find("Minigame Controller").gameObject.SendMessage("MinigameContinue", SendMessageOptions.DontRequireReceiver);
                 menu_bg.SetActive(false);
             }
             if (button_name == "Option")
