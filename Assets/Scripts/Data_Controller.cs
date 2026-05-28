@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [Serializable]
@@ -10,10 +11,19 @@ public class Medi_Info
     public string[] FAST_info;
 }
 
+[Serializable]
+public class Minigame_Scores
+{
+    public float[] CPR_score;
+    public float[] Hives_score;
+    public float[] FAST_score;
+}
+
 public class Data_Controller : MonoBehaviour
 {
     private TextAsset json_temp;
     public static Medi_Info medi_info;
+    private Minigame_Scores minigame_scores;
     [SerializeField] public static float minigame_score = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

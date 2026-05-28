@@ -9,8 +9,8 @@ public class Fullscreen_Toggle_Button : MonoBehaviour
     void Start()
     {
         fullscreen_toggle = GetComponent<Toggle>();
-        if (Screen_Resolution_Controller.isFullscreen) fullscreen_toggle.isOn = true;
-        else fullscreen_toggle.isOn = false;
+        if (Screen_Resolution_Controller.is_fullscreen_mode) fullscreen_toggle.SetIsOnWithoutNotify(true);
+        else fullscreen_toggle.SetIsOnWithoutNotify(false);
     }
 
     // Update is called once per frame

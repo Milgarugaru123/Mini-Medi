@@ -5,25 +5,26 @@ using UnityEngine.UI;
 
 public class Screen_Resolution_Controller : MonoBehaviour
 {
-    public static bool isFullscreen = false;
+    public static bool is_fullscreen_mode = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (!isFullscreen) Screen.SetResolution(1920, 1080, false);
+        if (!is_fullscreen_mode) Screen.SetResolution(1920, 1080, false);
+        else Screen.SetResolution(1920, 1080, true);
     }
 
     public void ToggleScreenResolution()
     {
-        if (isFullscreen)
+        if (is_fullscreen_mode)
         {
             Screen.SetResolution(1920, 1080, false);
-            isFullscreen = false;
+            is_fullscreen_mode = false;
         }
         else
         {
             Screen.SetResolution(1920, 1080, true);
-            isFullscreen = true;
+            is_fullscreen_mode = true;
         }
     }
 

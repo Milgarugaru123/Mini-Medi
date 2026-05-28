@@ -65,7 +65,7 @@ public class Fade_Controller : MonoBehaviour // Panel 불투명도 조절해 페이드인 o
             Debug.Log("Fade Out 중...");
             yield return null;
         }
-
+        panel.GetComponent<CanvasRenderer>().SetAlpha(1f);
         Debug.Log("Fade Out 끝");
         onCompleteCallback?.Invoke(); // 이후에 해야 하는 다른 액션이 있는 경우(null이 아님) 진행한다
         yield break;

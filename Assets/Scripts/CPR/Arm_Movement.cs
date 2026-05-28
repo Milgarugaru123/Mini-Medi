@@ -43,32 +43,29 @@ public class Arm_Movement : MonoBehaviour
 
     private IEnumerator Pumping()
     {
-        if (is_space_down)
-        {
-            is_space_down = false;
-        }
-        else
-        {
-            is_space_down = true;
-            arm_renderer.color = pumped_color;
-            arm_tr.localScale = pumped_scale;
-            arm_tr.position = pumped_pos;
-            yield return new WaitForSeconds(0.2f);
-            arm_renderer.color = original_color;
-            arm_tr.localScale = original_scale;
-            arm_tr.position = original_pos;
-        }
+        arm_renderer.color = pumped_color;
+        arm_tr.localScale = pumped_scale;
+        arm_tr.position = pumped_pos;
+        yield return new WaitForSeconds(0.2f);
+        arm_renderer.color = original_color;
+        arm_tr.localScale = original_scale;
+        arm_tr.position = original_pos;
         is_pumped = false;
         yield break;
     }
 
     public void Pump()
     {
-        if (!is_pumped)
+        if (is_space_down)
+        {
+            is_space_down = false;
+        }
+        else if (!is_pumped)
         {
             if (is_on)
             {
                 is_pumped = true;
+                is_space_down = true;
                 StartCoroutine("Pumping");
             }
         }

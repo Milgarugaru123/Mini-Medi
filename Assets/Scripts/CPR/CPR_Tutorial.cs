@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,6 +32,7 @@ public class CPR_Tutorial : MonoBehaviour
     private float good_timing = 0.1f;       //20 (5)
     private bool is_paused = false;
     public GameObject judgement;
+    public TMP_Text debug_text;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -76,7 +78,7 @@ public class CPR_Tutorial : MonoBehaviour
         if (is_tutorial) skip_button.SetActive(false);
     }
 
-private IEnumerator MessageDelay()
+    private IEnumerator MessageDelay()
     {
         yield return new WaitForSeconds(0.5f);
         message_flag = 1;
@@ -113,10 +115,10 @@ private IEnumerator MessageDelay()
         }
         bgm.DOFade(1f, 2f);
         yield return new WaitForSeconds(0.5f);
-        message_flag = 1;
         is_paused = true;
         is_pressed = true;
         yield return new WaitForSeconds(2.5f);
+        message_flag = 1;
         yield break;
     }
 
@@ -131,6 +133,8 @@ private IEnumerator MessageDelay()
         {
             if (!is_pressed)
             {
+                is_space_down = true;
+                debug_text.text = timer.ToString();     //디버깅용
                 Debug.Log("pressed: " + timer);
                 is_pressed = true;
                 if (timer >= (timer_max - perfect_timing) && timer <= (timer_max + perfect_timing))
@@ -238,7 +242,7 @@ private IEnumerator MessageDelay()
                 if (timer >= timer_max + timer_mid)
                 {
                     is_pressed = false;
-                    timer = timer_mid;
+                    timer -= timer_max;
                 }
                 if (!is_paused) timer += Time.deltaTime;
             }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Unity.Mathematics;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
@@ -11,7 +12,6 @@ using TMPro;
 public class CPR_Minigame_Normal : MonoBehaviour
 {
     private float timer = -0.19f;    //시작 offset
-    private float timer_k = 1.00015f;
     private float note_timer = 0f;
     private bool is_started = false;
     private bool is_paused = true;
@@ -38,10 +38,17 @@ public class CPR_Minigame_Normal : MonoBehaviour
     public GameObject arm;
     private float common_medi_info_dist = 0.4f;
     public GameObject judgement;
+    public GameObject metronome;
+    private Transform metronome_niddle;
+    private float wave_range = 60f;
+    private float left_right_sign = 1f;     //오른쪽부터
+    public TMP_Text debug_text;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        metronome.SetActive(false);
+        metronome_niddle = metronome.transform.GetChild(0).transform;
         UnityEngine.Random.InitState((int)DateTime.Now.Ticks);
         bgm.Pause();
         timer_mid = timer_max / 2f;
@@ -103,6 +110,7 @@ public class CPR_Minigame_Normal : MonoBehaviour
     {
         if (is_started)
         {
+            metronome.SetActive(true);
             StartCoroutine("ResumeCountdown");
         }
     }
@@ -112,6 +120,7 @@ public class CPR_Minigame_Normal : MonoBehaviour
         if (is_started)
         {
             is_paused = true;
+            metronome.SetActive(false);
             StopCoroutine("ReadyCountdown");
             StopCoroutine("ResumeCountdown");
             bgm.Pause();
@@ -130,6 +139,8 @@ public class CPR_Minigame_Normal : MonoBehaviour
             if (is_paused) return;
             if (!is_pressed)
             {
+                is_space_down = true;
+                debug_text.text = timer.ToString();     //디버깅용
                 Debug.Log("pressed: " + timer);
                 is_pressed = true;
                 if (timer >= (timer_max - perfect_timing) && timer <= (timer_max + perfect_timing))
@@ -162,6 +173,7 @@ public class CPR_Minigame_Normal : MonoBehaviour
     public void StartMinigame()
     {
         is_started = true;
+        metronome.SetActive(true);
         StartCoroutine("ReadyCountdown");
     }
     
@@ -224,32 +236,45 @@ public class CPR_Minigame_Normal : MonoBehaviour
     {
         if (note_timer >= timer_max)
         {
-            note_count++;
-            note_timer = 0f;
-            Debug.Log(note_count);
+            note_timer -= timer_max;
             if (note_count < 32) sfx_group.transform.GetChild(0).GetComponent<AudioSource>().Play();
+            if (note_count % 40 == 0) StartCoroutine("RandomMediInfo");
+        }
+        if (timer < timer_mid)
+        {
+            is_pressed = true;
+            metronome_niddle.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        if (timer >= timer_max + timer_mid)
+        {
+            is_pressed = false;
+            Debug.Log(note_count );
+            timer -= timer_max;
+            //if (note_count == 240) timer += 0.05f;
             if (note_count == 385) StartCoroutine("EndMinigame");
             if (note_count >= 401)
             {
                 arm.SendMessage("ArmOff", SendMessageOptions.DontRequireReceiver);
                 is_paused = true;
             }
-            if (note_count % 40 == 0) StartCoroutine("RandomMediInfo");
+            if (left_right_sign == 1f) left_right_sign = 2f;
+            else left_right_sign = 1f;
+            note_count++;
         }
-        if (timer < timer_mid)
+        else if (timer >= timer_mid)
         {
-            is_pressed = true;
-        }
-        if (timer >= timer_max + timer_mid)
-        {
-            is_pressed = false;
-            timer = timer_mid;
-            if (note_count == 240) timer += 0.05f;
+            float wave_timer = math.remap(0f, timer, 0f, 3f, timer - timer_mid);
+            if (wave_timer > 1f)
+            {
+                wave_timer = 2f - wave_timer;
+                if (wave_timer < 0f) wave_timer = 0f;
+            }
+            metronome_niddle.rotation = Quaternion.Euler(0, 0, (wave_timer * wave_range * Mathf.Pow(-1, left_right_sign)));
         }
         if (score_value != score_value_prev) StartCoroutine("ScoreValueChange");
         if (!is_paused)
         {
-            timer += Time.deltaTime * timer_k;
+            timer += Time.deltaTime;
             note_timer += Time.deltaTime;
         }
     }
