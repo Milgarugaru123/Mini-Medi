@@ -41,7 +41,7 @@ public class CPR_Minigame_Normal : MonoBehaviour
     public GameObject metronome;
     private Transform metronome_niddle;
     private float wave_range = 60f;
-    private float left_right_sign = 1f;     //오른쪽부터
+    private int wave_direction = 1;     //-1: left, 1: right
     public TMP_Text debug_text;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -240,15 +240,10 @@ public class CPR_Minigame_Normal : MonoBehaviour
             if (note_count < 32) sfx_group.transform.GetChild(0).GetComponent<AudioSource>().Play();
             if (note_count % 40 == 0) StartCoroutine("RandomMediInfo");
         }
-        if (timer < timer_mid)
-        {
-            is_pressed = true;
-            metronome_niddle.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
         if (timer >= timer_max + timer_mid)
         {
             is_pressed = false;
-            Debug.Log(note_count );
+            Debug.Log(note_count);
             timer -= timer_max;
             //if (note_count == 240) timer += 0.05f;
             if (note_count == 385) StartCoroutine("EndMinigame");
@@ -257,19 +252,26 @@ public class CPR_Minigame_Normal : MonoBehaviour
                 arm.SendMessage("ArmOff", SendMessageOptions.DontRequireReceiver);
                 is_paused = true;
             }
-            if (left_right_sign == 1f) left_right_sign = 2f;
-            else left_right_sign = 1f;
+            if (wave_direction == -1) wave_direction = 1;
+            else wave_direction = -1;
             note_count++;
         }
-        else if (timer >= timer_mid)
+        else if (timer < timer_mid)
         {
-            float wave_timer = math.remap(0f, timer, 0f, 3f, timer - timer_mid);
-            if (wave_timer > 1f)
+            is_pressed = true;
+            if (timer <= 0f) metronome_niddle.rotation = Quaternion.Euler(0f, 0f, 0f);
+            else
             {
-                wave_timer = 2f - wave_timer;
-                if (wave_timer < 0f) wave_timer = 0f;
+                float wave_timer = math.remap(0f, timer_mid, 0f, 1f, timer);
+                metronome_niddle.rotation = Quaternion.Euler(0, 0, (wave_timer * wave_range));
             }
-            metronome_niddle.rotation = Quaternion.Euler(0, 0, (wave_timer * wave_range * Mathf.Pow(-1, left_right_sign)));
+        }
+        if (timer >= timer_mid)
+        {
+            /*float wave_timer = math.remap(0f, timer_max, -1f, 1f, timer - timer_mid);
+            metronome_niddle.rotation = Quaternion.Euler(0, 0, (wave_timer * wave_range * wave_direction));*/
+            float wave_timer = Mathf.Cos(math.remap(0f, timer_max, 0f, math.PI, timer - timer_mid));
+            metronome_niddle.rotation = Quaternion.Euler(0, 0, (wave_timer * wave_range * wave_direction));
         }
         if (score_value != score_value_prev) StartCoroutine("ScoreValueChange");
         if (!is_paused)
